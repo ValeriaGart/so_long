@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vharkush <vharkush@student.42vienna.com>   +#+  +:+       +#+        */
+/*   By: vharkush <vharkush@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 21:23:38 by vharkush          #+#    #+#             */
-/*   Updated: 2023/03/16 21:24:16 by vharkush         ###   ########.fr       */
+/*   Updated: 2023/05/29 16:42:17 by vharkush         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,10 @@
 # include "../libft/libft.h"
 # include "../get_next_line/get_next_line.h"
 # include "../minilibx-linux/mlx.h"
+# define DOWN_KEY 65364
+# define UP_KEY 65362
+# define LEFT_KEY 65361
+# define RIGHT_KEY 65363
 
 typedef struct s_map
 {
@@ -71,6 +75,10 @@ void	ft_check_map(int fd, char **av, t_map *map, t_data *data);
 void	ft_lines(int fd, t_map *map);
 void	ft_free_arr(t_map *map);
 void	ft_free_all(t_data *data, t_map *map);
+void	ft_put_img(t_data *data, t_map *map, int i, int j);
+void	ft_open_map(char **av, t_map *map, t_data *data);
+void	ft_pregame(t_map *map, t_data *data, char **av, int ac);
+void	ft_error_msg_exit_free_fd(int fd, char *msg,int len);
 char	**ft_store_arr(t_map *map, int fd);
 int		handle_keypress(int keysym, t_data *data);
 int		handle_x(t_data *data);

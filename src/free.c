@@ -21,3 +21,12 @@ int	handle_x(t_data *data)
 	ft_free_all(data, data->map);
 	exit(0);
 }
+
+void	ft_error_msg_exit_free_fd(int fd, char *msg,int len)
+{
+	if (fd != 42)
+		close(fd);
+	if (msg)
+		write(1,  msg, len);
+	exit (1);
+}

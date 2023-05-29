@@ -3,28 +3,57 @@
 /*                                                        :::      ::::::::   */
 /*   moveit_moveit.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vharkush <vharkush@student.42vienna.com>   +#+  +:+       +#+        */
+/*   By: vharkush <vharkush@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 19:59:50 by vharkush          #+#    #+#             */
-/*   Updated: 2023/03/23 19:59:56 by vharkush         ###   ########.fr       */
+/*   Updated: 2023/05/29 17:35:08 by vharkush         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 
 #include "../incl/so_long.h"
 
+void	ft_write_moves(int moves)
+{
+	int		tmp;
+	int		rem_moves;
+	char	print;
+
+	tmp = 0;
+	rem_moves = moves;
+	write(1, "Moves: ", 7);
+	while (moves != 0)
+	{
+		tmp = tmp * 10 + (moves % 10);
+		moves /= 10;
+	}
+	while (tmp != 0)
+	{
+		print = tmp % 10 + 48;
+		tmp /= 10;
+		write(1, &print, 1);
+	}
+	if (rem_moves % 10 == 0 && rem_moves != 0)
+		while (rem_moves % 10 == 0)
+		{
+			write(1, "0", 1);
+			rem_moves /= 10;
+		}
+	write(1, "\n", 1);
+}
+
 void    move_monke(int keysym, t_data *data)
 {
 	int	num;
     data->moves += 1;
-    printf("Moves: %d\n", data->moves);
-    if ((keysym == XK_d) && (data->space[data->y][data->x + 1] != '1'))
+	ft_write_moves(data->moves);
+    if ((keysym == XK_d || keysym == RIGHT_KEY) && (data->space[data->y][data->x + 1] != '1'))
 		data->x += 1;
-	if (keysym == XK_a && (data->space[data->y][data->x - 1] != '1'))
+	if ((keysym == XK_a || keysym == LEFT_KEY)  && (data->space[data->y][data->x - 1] != '1'))
 		data->x -= 1;
-	if (keysym == XK_w && (data->space[data->y - 1][data->x] != '1'))
+	if ((keysym == XK_w || keysym == UP_KEY) && (data->space[data->y - 1][data->x] != '1'))
 		data->y -= 1;
-	if (keysym == XK_s && (data->space[data->y + 1][data->x] != '1'))
+	if ((keysym == XK_s || keysym == DOWN_KEY)  && (data->space[data->y + 1][data->x] != '1'))
 		data->y += 1;
     if (data->space[data->y][data->x] == 'C')
     {
@@ -35,7 +64,7 @@ void    move_monke(int keysym, t_data *data)
 	if (data->col == data->total_col)
 	{
 		mlx_destroy_image(data->mlx_ptr, data->img->exit);
-		data->img->exit = mlx_xpm_file_to_image(data->mlx_ptr, "textures/exit_closed.xpm", &num, &num);
+		data->img->exit = mlx_xpm_file_to_image(data->mlx_ptr, "textures/exit_open.xpm", &num, &num);
 		mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img->exit, data->ex * 64, data->ey * 64);
 	}
     if ((data->col == data->total_col) && (data->space[data->y][data->x] == 'E'))

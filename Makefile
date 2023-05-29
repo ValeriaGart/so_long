@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: vharkush <marvin@42.fr>                    +#+  +:+       +#+         #
+#    By: vharkush <vharkush@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/16 20:43:50 by vharkush          #+#    #+#              #
-#    Updated: 2023/03/23 17:43:34 by vharkush         ###   ########.fr        #
+#    Updated: 2023/05/29 15:07:26 by vharkush         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,6 +21,7 @@ SRCS =	src/so_long.c					\
 		src/map_check2.c				\
 		src/moveit_moveit.c				\
 		src/free.c						\
+		src/utils.c						\
 		get_next_line/get_next_line.c   \
 		get_next_line/get_next_line_utils.c
 
@@ -40,13 +41,13 @@ $(NAME): $(OBJS)
 all:    $(NAME)
 
 clean:
-		$(MAKE) -C ./libft
-		$(MAKE) -C ./minilibx-linux
+		$(MAKE) clean -C ./libft
+		$(MAKE) clean -C ./minilibx-linux
 		rm -rf $(OBJS)
 
 fclean: clean
+		$(MAKE) fclean -C ./libft
 		rm -rf $(NAME)
-		rm -rf pipex_bonus
 
 re: fclean all
 

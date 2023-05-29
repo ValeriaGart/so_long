@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_check.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vharkush <vharkush@student.42vienna.com>   +#+  +:+       +#+        */
+/*   By: vharkush <vharkush@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 21:17:54 by vharkush          #+#    #+#             */
-/*   Updated: 2023/03/16 21:18:22 by vharkush         ###   ########.fr       */
+/*   Updated: 2023/05/29 16:43:17 by vharkush         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,9 +77,21 @@ void	ft_de_monkey_path(t_map *map, t_data *data)
 		|| !map->collect)
 	{
 		ft_free_arr(map);
-		exit (write(1, "ERROR\nNo chance to win!\n", 25));
+		exit (write(1, "Error\nNo chance to win!\n", 24));
 	}
 	ft_free_arr(map);
+}
+
+void	ft_set_to_null_send_to_check(t_map *map)
+{
+	if (!map->space)
+		ft_error_msg_exit_free_fd(42, "Error\nMalloc failed\n", 20);
+	map->collect = 0;
+	map->exit = 0;
+	map->player = 0;
+	map->exit_way = 0;
+	map->col_way = 0;
+	ft_check_boarder(map, 0, map->space);
 }
 
 void	ft_check_map(int fd, char **av, t_map *map, t_data *data)
@@ -89,29 +101,23 @@ void	ft_check_map(int fd, char **av, t_map *map, t_data *data)
 	fd = open(av[1], O_RDONLY);
 	if (fd < 0)
 	{
-		perror("ERROR\nMap openning failed\n");
+		perror("Error\nMap openning failed\n");
 		exit (1);
 	}
 	map->space = ft_store_arr(map, fd);
 	close(fd);
-	map->collect = 0;
-	map->exit = 0;
-	map->player = 0;
-	map->exit_way = 0;
-	map->col_way = 0;
-	ft_check_boarder(map, 0, map->space);
+	ft_set_to_null_send_to_check(map);
 	if (map->exit == 0 || map->player == 0)
 	{
 		ft_free_arr(map);
-		exit (write(1, "ERROR\nNo player or exit, check properly!\n", 42));
+		exit (write(1, "Error\nNo player or exit, check properly!\n", 42));
 	}
 	ft_de_monkey_path(map, data);
 	fd = open(av[1], O_RDONLY);
 	if (fd < 0)
 	{
-		perror("ERROR\nMap openning failed\n");
+		perror("Error\nMap openning failed\n");
 		exit (1);
 	}
 	map->space = ft_store_arr(map, fd);
-	close(fd);
 }
