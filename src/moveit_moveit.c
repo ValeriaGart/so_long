@@ -6,7 +6,7 @@
 /*   By: vharkush <vharkush@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 19:59:50 by vharkush          #+#    #+#             */
-/*   Updated: 2023/05/30 17:59:00 by vharkush         ###   ########.fr       */
+/*   Updated: 2023/05/30 22:34:17 by vharkush         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,12 +107,62 @@ void    move_monke(int keysym, t_data *data)
 		handle_keypress(XK_Escape, data);
 }
 
+
+/*void	ft_put_enemy(t_data *data)
+{
+	int	x;
+	int	y;
+
+	x = 0;
+	while (data->space[x] != NULL)
+	{
+		y = 0;
+		while (data->space[x][y] != '\0')
+		{
+			if (data->space[x][y] == 'V')
+				mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img->villain, y * 64, x * 64);
+			y++;
+		}
+		x++;
+	}
+}*/
+
+/*int	ft_loop_enemy(t_data *data)
+{
+	int	num;
+
+	data->i = 0;
+	mlx_destroy_image(data->mlx_ptr, data->img->villain);
+	data->img->villain = mlx_xpm_file_to_image(data->mlx_ptr, "textures/enemy2.xpm", &num, &num);
+	while (data->i < 10000)
+	{
+		ft_put_enemy(data);
+		data->i++;
+	}
+	mlx_destroy_image(data->mlx_ptr, data->img->villain);
+	data->img->villain = mlx_xpm_file_to_image(data->mlx_ptr, "textures/enemy3.xpm", &num, &num);
+	while (data->i < 20000)
+	{
+		ft_put_enemy(data);
+		data->i++;
+	}
+	mlx_destroy_image(data->mlx_ptr, data->img->villain);
+	data->img->villain = mlx_xpm_file_to_image(data->mlx_ptr, "textures/enemy1.xpm", &num, &num);
+	ft_put_enemy(data);
+	return (0);
+}*/
+
 int	handle_keypress(int keysym, t_data *data)
 {
 	int	num;
 
 	if (keysym == XK_Escape)
 		ft_free_all(data, data->map);
+	//if (keysym == XK_q)
+	//{
+	//	ft_loop_enemy(data);
+	//	return (0);
+	//}
 	mlx_destroy_image(data->mlx_ptr, data->img->monki);
 	data->img->monki = mlx_xpm_file_to_image(data->mlx_ptr, "textures/mainchar.xpm", &num, &num);
 	if (data->space[data->y][data->x] != 'E' && data->space[data->y][data->x] != 'V')
@@ -121,7 +171,6 @@ int	handle_keypress(int keysym, t_data *data)
 		mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img->exit, data->x * 64, data->y * 64);
 	else
 		mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img->villain, data->x * 64, data->y * 64);
-	//ft_loop_enemy(data);
 	move_monke(keysym, data);
 	return (0);
 }
