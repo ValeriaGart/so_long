@@ -6,7 +6,7 @@
 /*   By: vharkush <vharkush@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 21:23:38 by vharkush          #+#    #+#             */
-/*   Updated: 2023/05/29 16:42:17 by vharkush         ###   ########.fr       */
+/*   Updated: 2023/05/30 17:11:04 by vharkush         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ typedef struct s_img
 	void	*right;
 	void	*backgrd;
 	void	*monki;
+	void	*villain;
 }		t_img;
 
 typedef struct s_data
@@ -66,6 +67,7 @@ typedef struct s_data
 	int		col;
 	int		total_col;
 	int		moves;
+	int		i;
 	t_img	*img;
 	t_map	*map;
 }	t_data;

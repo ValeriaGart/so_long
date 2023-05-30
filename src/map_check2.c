@@ -6,7 +6,7 @@
 /*   By: vharkush <vharkush@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 21:18:31 by vharkush          #+#    #+#             */
-/*   Updated: 2023/05/29 16:28:24 by vharkush         ###   ########.fr       */
+/*   Updated: 2023/05/30 16:48:58 by vharkush         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,7 @@ void	ft_check_more(char **iter, int i, t_map *map)
 	while (iter[i][j])
 	{
 		if (iter[i][j] != '1' && iter[i][j] != 'P' && iter[i][j] != 'C'
-			&& iter[i][j] != 'E' && iter[i][j] != '0')
+			&& iter[i][j] != 'E' && iter[i][j] != '0' &&iter[i][j] != 'V')
 		{
 			ft_free_arr(map);
 			exit (write(1, "Error\nWrong symbols in the map\n", 32));

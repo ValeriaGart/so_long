@@ -1,5 +1,5 @@
 ✅remember all writen
-❎add char animation
+✅add char animation
 ❎add enemy
 ❎add count on screen
 ❎check leaks

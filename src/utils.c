@@ -6,7 +6,7 @@
 /*   By: vharkush <vharkush@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/29 15:06:19 by vharkush          #+#    #+#             */
-/*   Updated: 2023/05/29 16:50:21 by vharkush         ###   ########.fr       */
+/*   Updated: 2023/05/30 16:55:51 by vharkush         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,8 @@ void	ft_put_img(t_data *data, t_map *map, int i, int j)
 				data->x = j;
 				data->y = i;
 			}
+			if (map->space[i][j] == 'V')
+				mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img->villain, j * 64, i * 64);
 			j++;
 		}
 		i++;

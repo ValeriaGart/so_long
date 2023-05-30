@@ -9,6 +9,7 @@ void    ft_free_all(t_data *data, t_map *map)
     mlx_destroy_image(data->mlx_ptr, data->img->monki);
     mlx_destroy_image(data->mlx_ptr, data->img->col);
     mlx_destroy_image(data->mlx_ptr, data->img->exit);
+	mlx_destroy_image(data->mlx_ptr, data->img->villain);
 	mlx_destroy_display(data->mlx_ptr);
 	free(data->mlx_ptr);
     free(data->img);
