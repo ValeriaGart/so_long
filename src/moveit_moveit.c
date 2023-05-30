@@ -6,7 +6,7 @@
 /*   By: vharkush <vharkush@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 19:59:50 by vharkush          #+#    #+#             */
-/*   Updated: 2023/05/29 17:35:08 by vharkush         ###   ########.fr       */
+/*   Updated: 2023/05/29 22:43:08 by vharkush         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,15 +42,44 @@ void	ft_write_moves(int moves)
 	write(1, "\n", 1);
 }
 
+void	ft_new_img(char *path, t_data *data)
+{
+	int	num;
+
+	mlx_destroy_image(data->mlx_ptr, data->img->monki);
+	data->img->monki = mlx_xpm_file_to_image(data->mlx_ptr, path, &num, &num);
+}
+
+void	ft_monke_moves(t_data *data)
+{
+	int	i;
+
+	i = 0;
+	ft_new_img("textures/maincharl1.xpm", data);
+	while (++i < 6000)
+		mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img->monki, data->x * 64, data->y * 64);
+	i = 0;
+	ft_new_img("textures/maincharl2.xpm", data);
+	while (++i < 5000)
+		mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img->monki, data->x * 64, data->y * 64);
+	//mlx_destroy_image(data->mlx_ptr, data->img->monki);
+	//data->img->monki = mlx_xpm_file_to_image(data->mlx_ptr, "textures/mainchar.xpm", &num, &num);
+}
+ 
 void    move_monke(int keysym, t_data *data)
 {
 	int	num;
     data->moves += 1;
 	ft_write_moves(data->moves);
     if ((keysym == XK_d || keysym == RIGHT_KEY) && (data->space[data->y][data->x + 1] != '1'))
+	{ 
 		data->x += 1;
+	}
 	if ((keysym == XK_a || keysym == LEFT_KEY)  && (data->space[data->y][data->x - 1] != '1'))
+	{
 		data->x -= 1;
+		ft_monke_moves(data);
+	}
 	if ((keysym == XK_w || keysym == UP_KEY) && (data->space[data->y - 1][data->x] != '1'))
 		data->y -= 1;
 	if ((keysym == XK_s || keysym == DOWN_KEY)  && (data->space[data->y + 1][data->x] != '1'))
