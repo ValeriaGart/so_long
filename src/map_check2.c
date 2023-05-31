@@ -6,7 +6,7 @@
 /*   By: vharkush <vharkush@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 21:18:31 by vharkush          #+#    #+#             */
-/*   Updated: 2023/05/30 16:48:58 by vharkush         ###   ########.fr       */
+/*   Updated: 2023/05/31 12:34:40 by vharkush         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,6 +108,8 @@ void	ft_check_more(char **iter, int i, t_map *map)
 			map->exit += 1;
 		if (iter[i][j] == 'P')
 			map->player += 1;
+		if (iter[i][j] == 'V')
+			map->villain = 1;
 		j++;
 	}
 }

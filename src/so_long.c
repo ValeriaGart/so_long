@@ -6,7 +6,7 @@
 /*   By: vharkush <vharkush@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 21:16:24 by vharkush          #+#    #+#             */
-/*   Updated: 2023/05/30 22:34:34 by vharkush         ###   ########.fr       */
+/*   Updated: 2023/05/31 12:38:42 by vharkush         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ int	ft_loop_enemy(t_data *data)
 	}
 	mlx_destroy_image(data->mlx_ptr, data->img->villain);
 	data->img->villain = mlx_xpm_file_to_image(data->mlx_ptr, "textures/enemy1.xpm", &num, &num);
-	while (data->i < 30000)
+	while (data->i < 28000)
 	{
 		ft_put_enemy(data);
 		data->i++;
@@ -82,13 +82,15 @@ int	main(int ac, char **av)
 	t_data	data;
 
 	data.i = 0;
+	map.villain = 0;
 	ft_pregame(&map, &data, av, ac);
 	data.space = map.space;
 	data.map = &map;
 	ft_assign_img(&data, data.map);
 	mlx_hook(data.win_ptr, 17, 1L << 2, &handle_x, &data);
 	mlx_hook(data.win_ptr, KeyPress, KeyPressMask, &handle_keypress, &data);
-	mlx_loop_hook(data.mlx_ptr, &ft_loop_enemy, &data);
+	if (data.map->villain)
+		mlx_loop_hook(data.mlx_ptr, &ft_loop_enemy, &data);
 	mlx_loop(data.mlx_ptr);
 	return (0);
 }

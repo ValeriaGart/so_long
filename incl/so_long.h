@@ -6,7 +6,7 @@
 /*   By: vharkush <vharkush@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 21:23:38 by vharkush          #+#    #+#             */
-/*   Updated: 2023/05/30 17:11:04 by vharkush         ###   ########.fr       */
+/*   Updated: 2023/05/31 19:04:51 by vharkush         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ typedef struct s_map
 	int				exit_way;
 	int				player;
 	int				exit;
+	int				villain;
 	int				x;
 	int				y;
 }		t_map;
@@ -53,6 +54,10 @@ typedef struct s_img
 	void	*backgrd;
 	void	*monki;
 	void	*villain;
+	void	*weaponl;
+	void	*weaponr;
+	void	*weapond;
+	void	*weaponu;
 }		t_img;
 
 typedef struct s_data

@@ -6,7 +6,7 @@
 /*   By: vharkush <vharkush@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 19:59:50 by vharkush          #+#    #+#             */
-/*   Updated: 2023/05/30 22:34:17 by vharkush         ###   ########.fr       */
+/*   Updated: 2023/05/31 19:14:38 by vharkush         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,50 +107,58 @@ void    move_monke(int keysym, t_data *data)
 		handle_keypress(XK_Escape, data);
 }
 
-
-/*void	ft_put_enemy(t_data *data)
-{
-	int	x;
-	int	y;
-
-	x = 0;
-	while (data->space[x] != NULL)
-	{
-		y = 0;
-		while (data->space[x][y] != '\0')
-		{
-			if (data->space[x][y] == 'V')
-				mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img->villain, y * 64, x * 64);
-			y++;
-		}
-		x++;
-	}
-}*/
-
-/*int	ft_loop_enemy(t_data *data)
+void	ft_loop_weapon(t_data *data, int ind, int x, int y)
 {
 	int	num;
 
-	data->i = 0;
-	mlx_destroy_image(data->mlx_ptr, data->img->villain);
-	data->img->villain = mlx_xpm_file_to_image(data->mlx_ptr, "textures/enemy2.xpm", &num, &num);
-	while (data->i < 10000)
+	if (ind == 3)
 	{
-		ft_put_enemy(data);
-		data->i++;
+		data->img->weaponl = mlx_xpm_file_to_image(data->mlx_ptr, "textures/weaponl3.xpm", &num, &num);
+		data->img->weaponr = mlx_xpm_file_to_image(data->mlx_ptr, "textures/weaponr3.xpm", &num, &num);
+		data->img->weapond = mlx_xpm_file_to_image(data->mlx_ptr, "textures/weapond3.xpm", &num, &num);
+		data->img->weaponu = mlx_xpm_file_to_image(data->mlx_ptr, "textures/weaponu3.xpm", &num, &num);
+		if (data->space[x + 1][y] != '1')
+			mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img->weaponu, data->x * 64, (y - 1) * 64);
+		if (data->space[x - 1][y] != '1')
+			mlx_put_image_to_window(data->mlx_ptr, data->win_ptr,  data->img->weapond, data->x * 64, (y + 1) * 64);
+		if (data->space[x][y + 1] != '1')
+			mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img->weaponr, (x + 1) * 64, data->y * 64);
+		if (data->space[x][y - 1] != '1')
+			mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img->weaponl, (x - 1) * 64, data->y * 64);
 	}
-	mlx_destroy_image(data->mlx_ptr, data->img->villain);
-	data->img->villain = mlx_xpm_file_to_image(data->mlx_ptr, "textures/enemy3.xpm", &num, &num);
-	while (data->i < 20000)
-	{
-		ft_put_enemy(data);
-		data->i++;
-	}
-	mlx_destroy_image(data->mlx_ptr, data->img->villain);
-	data->img->villain = mlx_xpm_file_to_image(data->mlx_ptr, "textures/enemy1.xpm", &num, &num);
-	ft_put_enemy(data);
+	
+}
+
+void	ft_use_weapon_yo(t_data *data)
+{
+	int	num;
+
+	mlx_destroy_image(data->mlx_ptr, data->img->monki);
+		data->img->monki = mlx_xpm_file_to_image(data->mlx_ptr, "textures/weapon.xpm", &num, &num);
+	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img->monki, data->x * 64, data->y * 64);
+	ft_loop_weapon(data, 3, data->x, data->y);
+	//ft_loop_weapon(data, 2, x, y);
+	//ft_loop_weapon(data, 1, x, y);
+}
+
+int	ft_destroy_it_roarrr(t_data *data)
+{
+	int	y;
+	int	x;
+
+	x = data->y;
+	y = data->x;
+	if (data->space[x + 1][y] == 'V')
+		data->space[x + 1][y] = '0';
+	if (data->space[x - 1][y] == 'V')
+		data->space[x - 1][y] = '0';
+	if (data->space[x][y + 1] == 'V')
+		data->space[x][y + 1] = '0';
+	if (data->space[x][y - 1] == 'V')
+		data->space[x][y - 1] = '0';
+	ft_use_weapon_yo(data);
 	return (0);
-}*/
+}
 
 int	handle_keypress(int keysym, t_data *data)
 {
@@ -158,11 +166,8 @@ int	handle_keypress(int keysym, t_data *data)
 
 	if (keysym == XK_Escape)
 		ft_free_all(data, data->map);
-	//if (keysym == XK_q)
-	//{
-	//	ft_loop_enemy(data);
-	//	return (0);
-	//}
+	if (keysym == XK_q)
+		return (ft_destroy_it_roarrr(data));
 	mlx_destroy_image(data->mlx_ptr, data->img->monki);
 	data->img->monki = mlx_xpm_file_to_image(data->mlx_ptr, "textures/mainchar.xpm", &num, &num);
 	if (data->space[data->y][data->x] != 'E' && data->space[data->y][data->x] != 'V')
