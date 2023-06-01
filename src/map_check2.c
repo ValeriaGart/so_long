@@ -6,7 +6,7 @@
 /*   By: vharkush <vharkush@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 21:18:31 by vharkush          #+#    #+#             */
-/*   Updated: 2023/05/31 12:34:40 by vharkush         ###   ########.fr       */
+/*   Updated: 2023/06/01 13:43:45 by vharkush         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ char	**ft_store_arr(t_map *map, int fd)
 	int		i;
 	int		pos_err;
 
-	str = malloc((map->lines) * sizeof(char *));
+	str = malloc(((map->lines) + 1) * sizeof(char *));
 	i = -1;
 	pos_err = 0;
 	while (++i < map->lines && str != NULL)
@@ -62,6 +62,7 @@ char	**ft_store_arr(t_map *map, int fd)
 		}
 		str[i][map->line_len] = '\0';
 	}
+	str[map->lines] = NULL;
 	return (str);
 }
 

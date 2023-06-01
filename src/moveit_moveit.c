@@ -6,21 +6,31 @@
 /*   By: vharkush <vharkush@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 19:59:50 by vharkush          #+#    #+#             */
-/*   Updated: 2023/06/01 07:26:54 by vharkush         ###   ########.fr       */
+/*   Updated: 2023/06/01 14:38:50 by vharkush         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 
 #include "../incl/so_long.h"
+#include <limits.h>
 
-void	ft_write_moves(int moves)
+void	ft_write_moves(int moves, t_data *data)
 {
 	int		tmp;
 	int		rem_moves;
 	char	print;
+	char	*str;
 
+	str = ft_itoa(moves);
+	if (!str)
+		exit(1);
 	tmp = 0;
 	rem_moves = moves;
+	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img->backgrd, 0, 0);
+	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img->backgrd, 64, 0);
+	mlx_string_put(data->mlx_ptr, data->win_ptr, 10, 10, INT_MAX, "Moves: ");
+	mlx_string_put(data->mlx_ptr, data->win_ptr, 50, 10, INT_MAX, str);
+	free(str);
 	write(1, "Moves: ", 7);
 	while (moves != 0)
 	{
@@ -69,7 +79,7 @@ void    move_monke(int keysym, t_data *data)
 	int	num;
 
     data->moves += 1;
-	ft_write_moves(data->moves);
+	ft_write_moves(data->moves, data);
     if ((keysym == XK_d || keysym == RIGHT_KEY) && (data->space[data->y][data->x + 1] != '1'))
 	{ 
 		data->x += 1;
@@ -174,6 +184,8 @@ void	ft_defeat_villain(t_data *data, int x, int y)
 	if (data->space[x][y] == 'C')
 		mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img->col, y * 64, x * 64);
 	if (data->space[x][y] == '0')
+		mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img->right, y * 64, x * 64);
+	if (data->space[x][y] == 'P')
 		mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img->right, y * 64, x * 64);
 	if (data->space[x][y] == 'V')
 	{

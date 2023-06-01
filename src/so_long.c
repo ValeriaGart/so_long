@@ -6,7 +6,7 @@
 /*   By: vharkush <vharkush@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 21:16:24 by vharkush          #+#    #+#             */
-/*   Updated: 2023/05/31 22:12:51 by vharkush         ###   ########.fr       */
+/*   Updated: 2023/06/01 14:16:34 by vharkush         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,25 +59,16 @@ int	ft_loop_enemy(t_data *data)
 	data->i = 0;
 	mlx_destroy_image(data->mlx_ptr, data->img->villain);
 	data->img->villain = mlx_xpm_file_to_image(data->mlx_ptr, "textures/enemy2.xpm", &num, &num);
-	while (data->i < 10000)
-	{
-		ft_put_enemy(data);
-		data->i++;
-	}
+	usleep(80000);
+	ft_put_enemy(data);
 	mlx_destroy_image(data->mlx_ptr, data->img->villain);
 	data->img->villain = mlx_xpm_file_to_image(data->mlx_ptr, "textures/enemy3.xpm", &num, &num);
-	while (data->i < 20000)
-	{
-		ft_put_enemy(data);
-		data->i++;
-	}
+	usleep(80000);
+	ft_put_enemy(data);
 	mlx_destroy_image(data->mlx_ptr, data->img->villain);
 	data->img->villain = mlx_xpm_file_to_image(data->mlx_ptr, "textures/enemy1.xpm", &num, &num);
-	while (data->i < 28000)
-	{
-		ft_put_enemy(data);
-		data->i++;
-	}
+	usleep(80000);
+	ft_put_enemy(data);
 	return (0);
 }
 
