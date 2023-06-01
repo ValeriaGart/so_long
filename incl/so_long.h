@@ -6,7 +6,7 @@
 /*   By: vharkush <vharkush@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 21:23:38 by vharkush          #+#    #+#             */
-/*   Updated: 2023/05/31 19:04:51 by vharkush         ###   ########.fr       */
+/*   Updated: 2023/05/31 21:08:22 by vharkush         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@ typedef struct s_img
 	void	*weaponr;
 	void	*weapond;
 	void	*weaponu;
+	void	*prize;
 }		t_img;
 
 typedef struct s_data

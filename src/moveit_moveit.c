@@ -6,7 +6,7 @@
 /*   By: vharkush <vharkush@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 19:59:50 by vharkush          #+#    #+#             */
-/*   Updated: 2023/05/31 19:14:38 by vharkush         ###   ########.fr       */
+/*   Updated: 2023/06/01 07:26:54 by vharkush         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,34 +111,78 @@ void	ft_loop_weapon(t_data *data, int ind, int x, int y)
 {
 	int	num;
 
+	mlx_destroy_image(data->mlx_ptr, data->img->weaponu);
+	mlx_destroy_image(data->mlx_ptr, data->img->weapond);
+	mlx_destroy_image(data->mlx_ptr, data->img->weaponr);
+	mlx_destroy_image(data->mlx_ptr, data->img->weaponl);
 	if (ind == 3)
 	{
 		data->img->weaponl = mlx_xpm_file_to_image(data->mlx_ptr, "textures/weaponl3.xpm", &num, &num);
 		data->img->weaponr = mlx_xpm_file_to_image(data->mlx_ptr, "textures/weaponr3.xpm", &num, &num);
 		data->img->weapond = mlx_xpm_file_to_image(data->mlx_ptr, "textures/weapond3.xpm", &num, &num);
 		data->img->weaponu = mlx_xpm_file_to_image(data->mlx_ptr, "textures/weaponu3.xpm", &num, &num);
-		if (data->space[x + 1][y] != '1')
-			mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img->weaponu, data->x * 64, (y - 1) * 64);
-		if (data->space[x - 1][y] != '1')
-			mlx_put_image_to_window(data->mlx_ptr, data->win_ptr,  data->img->weapond, data->x * 64, (y + 1) * 64);
-		if (data->space[x][y + 1] != '1')
-			mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img->weaponr, (x + 1) * 64, data->y * 64);
-		if (data->space[x][y - 1] != '1')
-			mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img->weaponl, (x - 1) * 64, data->y * 64);
 	}
-	
+	if (ind == 2)
+	{
+		data->img->weaponl = mlx_xpm_file_to_image(data->mlx_ptr, "textures/weaponl2.xpm", &num, &num);
+		data->img->weaponr = mlx_xpm_file_to_image(data->mlx_ptr, "textures/weaponr2.xpm", &num, &num);
+		data->img->weapond = mlx_xpm_file_to_image(data->mlx_ptr, "textures/weapond2.xpm", &num, &num);
+		data->img->weaponu = mlx_xpm_file_to_image(data->mlx_ptr, "textures/weaponu2.xpm", &num, &num);
+	}
+	if (ind == 1)
+	{
+		data->img->weaponl = mlx_xpm_file_to_image(data->mlx_ptr, "textures/weaponl1.xpm", &num, &num);
+		data->img->weaponr = mlx_xpm_file_to_image(data->mlx_ptr, "textures/weaponr1.xpm", &num, &num);
+		data->img->weapond = mlx_xpm_file_to_image(data->mlx_ptr, "textures/weapond1.xpm", &num, &num);
+		data->img->weaponu = mlx_xpm_file_to_image(data->mlx_ptr, "textures/weaponu1.xpm", &num, &num);
+	}
+	if (data->space[x + 1][y] != '1')
+		mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img->weapond, y * 64, (x + 1) * 64);
+	if (data->space[x - 1][y] != '1')
+		mlx_put_image_to_window(data->mlx_ptr, data->win_ptr,  data->img->weaponu, y * 64, (x - 1) * 64);
+	if (data->space[x][y + 1] != '1')
+		mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img->weaponr, (y + 1) * 64, x * 64);
+	if (data->space[x][y - 1] != '1')
+		mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img->weaponl, (y - 1) * 64, x * 64);
 }
 
 void	ft_use_weapon_yo(t_data *data)
 {
 	int	num;
+	int	i;
 
+	i = 0;
 	mlx_destroy_image(data->mlx_ptr, data->img->monki);
 		data->img->monki = mlx_xpm_file_to_image(data->mlx_ptr, "textures/weapon.xpm", &num, &num);
+	ft_loop_weapon(data, 3, data->y, data->x);
+	while (++i < 20000)
+		mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img->monki, data->x * 64, data->y * 64);
+	ft_loop_weapon(data, 2, data->y, data->x);
+	while (++i < 40000)
+		mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img->monki, data->x * 64, data->y * 64);
+	ft_loop_weapon(data, 1, data->y, data->x);
+	while (++i < 60000)
+		mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img->monki, data->x * 64, data->y * 64);
+}
+
+void	ft_defeat_villain(t_data *data, int x, int y)
+{
+	int	num;
+
+	if (data->space[x][y] == 'E')
+		mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img->exit, y * 64, x * 64);
+	if (data->space[x][y] == 'C')
+		mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img->col, y * 64, x * 64);
+	if (data->space[x][y] == '0')
+		mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img->right, y * 64, x * 64);
+	if (data->space[x][y] == 'V')
+	{
+		data->space[x][y] = '0';
+		mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img->prize, y * 64, x * 64);
+	}
+	mlx_destroy_image(data->mlx_ptr, data->img->monki);
+	data->img->monki = mlx_xpm_file_to_image(data->mlx_ptr, "textures/mainchar.xpm", &num, &num);
 	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img->monki, data->x * 64, data->y * 64);
-	ft_loop_weapon(data, 3, data->x, data->y);
-	//ft_loop_weapon(data, 2, x, y);
-	//ft_loop_weapon(data, 1, x, y);
 }
 
 int	ft_destroy_it_roarrr(t_data *data)
@@ -148,15 +192,11 @@ int	ft_destroy_it_roarrr(t_data *data)
 
 	x = data->y;
 	y = data->x;
-	if (data->space[x + 1][y] == 'V')
-		data->space[x + 1][y] = '0';
-	if (data->space[x - 1][y] == 'V')
-		data->space[x - 1][y] = '0';
-	if (data->space[x][y + 1] == 'V')
-		data->space[x][y + 1] = '0';
-	if (data->space[x][y - 1] == 'V')
-		data->space[x][y - 1] = '0';
 	ft_use_weapon_yo(data);
+	ft_defeat_villain(data, x + 1, y);
+	ft_defeat_villain(data, x - 1, y);
+	ft_defeat_villain(data, x, y + 1);
+	ft_defeat_villain(data, x, y - 1);
 	return (0);
 }
 
