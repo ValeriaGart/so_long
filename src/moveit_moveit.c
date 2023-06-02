@@ -6,7 +6,7 @@
 /*   By: vharkush <vharkush@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 19:59:50 by vharkush          #+#    #+#             */
-/*   Updated: 2023/06/01 14:38:50 by vharkush         ###   ########.fr       */
+/*   Updated: 2023/06/02 12:41:58 by vharkush         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,40 +16,16 @@
 
 void	ft_write_moves(int moves, t_data *data)
 {
-	int		tmp;
-	int		rem_moves;
-	char	print;
 	char	*str;
 
 	str = ft_itoa(moves);
 	if (!str)
 		exit(1);
-	tmp = 0;
-	rem_moves = moves;
 	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img->backgrd, 0, 0);
 	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img->backgrd, 64, 0);
 	mlx_string_put(data->mlx_ptr, data->win_ptr, 10, 10, INT_MAX, "Moves: ");
 	mlx_string_put(data->mlx_ptr, data->win_ptr, 50, 10, INT_MAX, str);
 	free(str);
-	write(1, "Moves: ", 7);
-	while (moves != 0)
-	{
-		tmp = tmp * 10 + (moves % 10);
-		moves /= 10;
-	}
-	while (tmp != 0)
-	{
-		print = tmp % 10 + 48;
-		tmp /= 10;
-		write(1, &print, 1);
-	}
-	if (rem_moves % 10 == 0 && rem_moves != 0)
-		while (rem_moves % 10 == 0)
-		{
-			write(1, "0", 1);
-			rem_moves /= 10;
-		}
-	write(1, "\n", 1);
 }
 
 void	ft_new_img(char *path, t_data *data)

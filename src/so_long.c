@@ -6,30 +6,38 @@
 /*   By: vharkush <vharkush@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 21:16:24 by vharkush          #+#    #+#             */
-/*   Updated: 2023/06/01 14:16:34 by vharkush         ###   ########.fr       */
+/*   Updated: 2023/06/02 13:01:01 by vharkush         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../incl/so_long.h"
 
+void	*assign_img_mlx(char *path, void *mlx_ptr)
+{
+	void	*ret;
+	int		num;
+
+	ret = mlx_xpm_file_to_image(mlx_ptr, path, &num, &num);
+	return (ret);
+}
+
 void	ft_assign_img(t_data *data, t_map *map)
 {
 	t_img	*img;
-	int		num;
 
 	img = malloc(sizeof(t_img));
 	data->img = img;
-	data->img->prize =  mlx_xpm_file_to_image(data->mlx_ptr, "textures/prize.xpm", &num, &num);
-	data->img->backgrd = mlx_xpm_file_to_image(data->mlx_ptr, "textures/walll.xpm", &num, &num);
-	data->img->right = mlx_xpm_file_to_image(data->mlx_ptr, "textures/ground_colour.xpm", &num, &num);
-	data->img->monki = mlx_xpm_file_to_image(data->mlx_ptr, "textures/mainchar.xpm", &num, &num);
-	data->img->exit = mlx_xpm_file_to_image(data->mlx_ptr, "textures/exit_closed.xpm", &num, &num);
-	data->img->col = mlx_xpm_file_to_image(data->mlx_ptr, "textures/collectable.xpm", &num, &num);
-	data->img->villain = mlx_xpm_file_to_image(data->mlx_ptr, "textures/enemy1.xpm", &num, &num);
-	data->img->weaponl = mlx_xpm_file_to_image(data->mlx_ptr, "textures/weaponl3.xpm", &num, &num);
-	data->img->weaponr = mlx_xpm_file_to_image(data->mlx_ptr, "textures/weaponr3.xpm", &num, &num);
-	data->img->weapond = mlx_xpm_file_to_image(data->mlx_ptr, "textures/weapond3.xpm", &num, &num);
-	data->img->weaponu = mlx_xpm_file_to_image(data->mlx_ptr, "textures/weaponu3.xpm", &num, &num);
+	data->img->prize = assign_img_mlx("textures/prize.xpm", data->mlx_ptr);
+	data->img->backgrd = assign_img_mlx("textures/walll.xpm", data->mlx_ptr);
+	data->img->right = assign_img_mlx("textures/ground_colour.xpm", data->mlx_ptr);
+	data->img->monki = assign_img_mlx("textures/mainchar.xpm", data->mlx_ptr);
+	data->img->exit = assign_img_mlx("textures/exit_closed.xpm", data->mlx_ptr);
+	data->img->col = assign_img_mlx("textures/collectable.xpm", data->mlx_ptr);
+	data->img->villain = assign_img_mlx("textures/enemy1.xpm", data->mlx_ptr);
+	data->img->weaponl = assign_img_mlx("textures/weaponl3.xpm", data->mlx_ptr);
+	data->img->weaponr = assign_img_mlx("textures/weaponr3.xpm", data->mlx_ptr);
+	data->img->weapond = assign_img_mlx("textures/weapond3.xpm", data->mlx_ptr);
+	data->img->weaponu = assign_img_mlx("textures/weaponu3.xpm", data->mlx_ptr);
 	ft_put_img(data, map, 0, 0);
 }
 
@@ -54,19 +62,17 @@ void	ft_put_enemy(t_data *data)
 
 int	ft_loop_enemy(t_data *data)
 {
-	int	num;
-
 	data->i = 0;
 	mlx_destroy_image(data->mlx_ptr, data->img->villain);
-	data->img->villain = mlx_xpm_file_to_image(data->mlx_ptr, "textures/enemy2.xpm", &num, &num);
+	data->img->villain = assign_img_mlx("textures/enemy2.xpm", data->mlx_ptr);
 	usleep(80000);
 	ft_put_enemy(data);
 	mlx_destroy_image(data->mlx_ptr, data->img->villain);
-	data->img->villain = mlx_xpm_file_to_image(data->mlx_ptr, "textures/enemy3.xpm", &num, &num);
+	data->img->villain = assign_img_mlx("textures/enemy3.xpm", data->mlx_ptr);
 	usleep(80000);
 	ft_put_enemy(data);
 	mlx_destroy_image(data->mlx_ptr, data->img->villain);
-	data->img->villain = mlx_xpm_file_to_image(data->mlx_ptr, "textures/enemy1.xpm", &num, &num);
+	data->img->villain = assign_img_mlx("textures/enemy1.xpm", data->mlx_ptr);
 	usleep(80000);
 	ft_put_enemy(data);
 	return (0);
