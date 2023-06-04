@@ -6,7 +6,7 @@
 /*   By: vharkush <vharkush@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 21:23:38 by vharkush          #+#    #+#             */
-/*   Updated: 2023/06/01 13:26:56 by vharkush         ###   ########.fr       */
+/*   Updated: 2023/06/04 15:09:10 by vharkush         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@
 # include <stdio.h>
 # include <X11/X.h>
 # include <X11/keysym.h>
+# include <limits.h>
 # include "../libft/libft.h"
 # include "../get_next_line/get_next_line.h"
 # include "../minilibx-linux/mlx.h"
@@ -81,14 +82,21 @@ typedef struct s_data
 void	ft_check_boarder(t_map *map, int i, char **iter);
 void	ft_check_map(int fd, char **av, t_map *map, t_data *data);
 void	ft_lines(int fd, t_map *map);
+void	if_lrud(int keysym, t_data *data);
 void	ft_free_arr(t_map *map);
 void	ft_free_all(t_data *data, t_map *map);
+void	ft_new_img(char *path, t_data *data);
+void	ft_monke_moves(t_data *data, char *one, char *two);
 void	ft_put_img(t_data *data, t_map *map, int i, int j);
 void	ft_open_map(char **av, t_map *map, t_data *data);
 void	ft_pregame(t_map *map, t_data *data, char **av, int ac);
-void	ft_error_msg_exit_free_fd(int fd, char *msg,int len);
-char	**ft_store_arr(t_map *map, int fd);
+void	ft_error_msg_exit_free_fd(int fd, char *msg, int len);
+void	ft_put_with_mlx(t_data *data, void *pic, int x, int y);
+void	ft_write_moves(int moves, t_data *data);
+void	*assign_img_mlx(char *path, void *mlx_ptr);
+char	**ft_store_arr(t_map *map, int fd, int i);
 int		handle_keypress(int keysym, t_data *data);
+int		ft_destroy_it_roarrr(t_data *data);
 int		handle_x(t_data *data);
 
 #endif

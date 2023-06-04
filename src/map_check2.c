@@ -6,7 +6,7 @@
 /*   By: vharkush <vharkush@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 21:18:31 by vharkush          #+#    #+#             */
-/*   Updated: 2023/06/01 13:43:45 by vharkush         ###   ########.fr       */
+/*   Updated: 2023/06/04 14:55:49 by vharkush         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,14 +36,12 @@ void	ft_lines(int fd, t_map *map)
 	free(tmp);
 }
 
-char	**ft_store_arr(t_map *map, int fd)
+char	**ft_store_arr(t_map *map, int fd, int i)
 {
 	char	**str;
-	int		i;
 	int		pos_err;
 
 	str = malloc(((map->lines) + 1) * sizeof(char *));
-	i = -1;
 	pos_err = 0;
 	while (++i < map->lines && str != NULL)
 	{
@@ -69,26 +67,23 @@ char	**ft_store_arr(t_map *map, int fd)
 void	ft_free_arr(t_map *map)
 {
 	int		i;
-	char	**freee;
+	char	**reee;
 
 	i = 0;
-	freee = map->space;
-	if (freee)
+	reee = map->space;
+	if (reee)
 	{
 		while (i < map->lines)
 		{
-			free(freee[i]);
+			free(reee[i]);
 			i++;
 		}
-		free(freee);
+		free(reee);
 	}
 }
 
-void	ft_check_more(char **iter, int i, t_map *map)
+void	ft_check_more(char **iter, int i, int j, t_map *map)
 {
-	int	j;
-
-	j = 0;
 	if (iter[i][0] != '1' || iter[i][map->line_len - 1] != '1'
 		|| map->exit > 1 || map->player > 1)
 	{
@@ -98,7 +93,7 @@ void	ft_check_more(char **iter, int i, t_map *map)
 	while (iter[i][j])
 	{
 		if (iter[i][j] != '1' && iter[i][j] != 'P' && iter[i][j] != 'C'
-			&& iter[i][j] != 'E' && iter[i][j] != '0' &&iter[i][j] != 'V')
+			&& iter[i][j] != 'E' && iter[i][j] != '0' && iter[i][j] != 'V')
 		{
 			ft_free_arr(map);
 			exit (write(1, "Error\nWrong symbols in the map\n", 32));
@@ -129,12 +124,13 @@ void	ft_check_boarder(t_map *map, int i, char **iter)
 			if (iter[i][j] != '1')
 			{
 				ft_free_arr(map);
-				ft_error_msg_exit_free_fd(42, "Error\nThe map isn't correct\n", 28);
+				ft_error_msg_exit_free_fd(42,
+					"Error\nThe map isn't correct\n", 28);
 			}
 			j++;
 		}
 	}
 	else
-		ft_check_more(iter, i, map);
+		ft_check_more(iter, i, 0, map);
 	ft_check_boarder(map, i + 1, iter);
 }

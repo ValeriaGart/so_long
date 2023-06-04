@@ -6,7 +6,7 @@
 /*   By: vharkush <vharkush@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 21:17:54 by vharkush          #+#    #+#             */
-/*   Updated: 2023/05/29 16:43:17 by vharkush         ###   ########.fr       */
+/*   Updated: 2023/06/04 14:57:14 by vharkush         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,7 +104,7 @@ void	ft_check_map(int fd, char **av, t_map *map, t_data *data)
 		perror("Error\nMap openning failed\n");
 		exit (1);
 	}
-	map->space = ft_store_arr(map, fd);
+	map->space = ft_store_arr(map, fd, -1);
 	close(fd);
 	ft_set_to_null_send_to_check(map);
 	if (map->exit == 0 || map->player == 0)
@@ -119,5 +119,5 @@ void	ft_check_map(int fd, char **av, t_map *map, t_data *data)
 		perror("Error\nMap openning failed\n");
 		exit (1);
 	}
-	map->space = ft_store_arr(map, fd);
+	map->space = ft_store_arr(map, fd, -1);
 }

@@ -6,7 +6,7 @@
 /*   By: vharkush <vharkush@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 21:16:24 by vharkush          #+#    #+#             */
-/*   Updated: 2023/06/02 13:01:01 by vharkush         ###   ########.fr       */
+/*   Updated: 2023/06/04 14:21:57 by vharkush         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,15 +29,16 @@ void	ft_assign_img(t_data *data, t_map *map)
 	data->img = img;
 	data->img->prize = assign_img_mlx("textures/prize.xpm", data->mlx_ptr);
 	data->img->backgrd = assign_img_mlx("textures/walll.xpm", data->mlx_ptr);
-	data->img->right = assign_img_mlx("textures/ground_colour.xpm", data->mlx_ptr);
+	data->img->right = assign_img_mlx("textures/ground_colour.xpm",
+			data->mlx_ptr);
 	data->img->monki = assign_img_mlx("textures/mainchar.xpm", data->mlx_ptr);
 	data->img->exit = assign_img_mlx("textures/exit_closed.xpm", data->mlx_ptr);
 	data->img->col = assign_img_mlx("textures/collectable.xpm", data->mlx_ptr);
 	data->img->villain = assign_img_mlx("textures/enemy1.xpm", data->mlx_ptr);
-	data->img->weaponl = assign_img_mlx("textures/weaponl3.xpm", data->mlx_ptr);
-	data->img->weaponr = assign_img_mlx("textures/weaponr3.xpm", data->mlx_ptr);
-	data->img->weapond = assign_img_mlx("textures/weapond3.xpm", data->mlx_ptr);
-	data->img->weaponu = assign_img_mlx("textures/weaponu3.xpm", data->mlx_ptr);
+	data->img->weaponl = assign_img_mlx("textures/wl3.xpm", data->mlx_ptr);
+	data->img->weaponr = assign_img_mlx("textures/wr3.xpm", data->mlx_ptr);
+	data->img->weapond = assign_img_mlx("textures/wd3.xpm", data->mlx_ptr);
+	data->img->weaponu = assign_img_mlx("textures/wu3.xpm", data->mlx_ptr);
 	ft_put_img(data, map, 0, 0);
 }
 
@@ -53,7 +54,8 @@ void	ft_put_enemy(t_data *data)
 		while (data->space[x][y] != '\0')
 		{
 			if (data->space[x][y] == 'V')
-				mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img->villain, y * 64, x * 64);
+				mlx_put_image_to_window(data->mlx_ptr, data->win_ptr,
+					data->img->villain, y * 64, x * 64);
 			y++;
 		}
 		x++;
