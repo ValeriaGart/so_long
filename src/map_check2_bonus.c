@@ -6,11 +6,11 @@
 /*   By: vharkush <vharkush@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 21:18:31 by vharkush          #+#    #+#             */
-/*   Updated: 2023/06/08 21:04:44 by vharkush         ###   ########.fr       */
+/*   Updated: 2023/06/04 14:55:49 by vharkush         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../incl/so_long.h"
+#include "../incl/so_long_bonus.h"
 
 void	ft_lines(int fd, t_map *map)
 {
@@ -93,7 +93,7 @@ void	ft_check_more(char **iter, int i, int j, t_map *map)
 	while (iter[i][j])
 	{
 		if (iter[i][j] != '1' && iter[i][j] != 'P' && iter[i][j] != 'C'
-			&& iter[i][j] != 'E' && iter[i][j] != '0')
+			&& iter[i][j] != 'E' && iter[i][j] != '0' && iter[i][j] != 'V')
 		{
 			ft_free_arr(map);
 			exit (write(1, "Error\nWrong symbols in the map\n", 32));
@@ -104,6 +104,8 @@ void	ft_check_more(char **iter, int i, int j, t_map *map)
 			map->exit += 1;
 		if (iter[i][j] == 'P')
 			map->player += 1;
+		if (iter[i][j] == 'V')
+			map->villain = 1;
 		j++;
 	}
 }

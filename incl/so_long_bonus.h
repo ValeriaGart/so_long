@@ -6,12 +6,12 @@
 /*   By: vharkush <vharkush@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 21:23:38 by vharkush          #+#    #+#             */
-/*   Updated: 2023/06/08 20:55:26 by vharkush         ###   ########.fr       */
+/*   Updated: 2023/06/04 15:09:10 by vharkush         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SO_LONG_H
-# define SO_LONG_H
+#ifndef SO_LONG_BONUS_H
+# define SO_LONG_BONUS_H
 
 # include <sys/wait.h>
 # include <unistd.h>
@@ -52,8 +52,14 @@ typedef struct s_img
 	void	*col;
 	void	*exit;
 	void	*right;
+	void	*prize;
 	void	*backgrd;
 	void	*monki;
+	void	*villain;
+	void	*weaponl;
+	void	*weaponr;
+	void	*weapond;
+	void	*weaponu;
 }		t_img;
 
 typedef struct s_data

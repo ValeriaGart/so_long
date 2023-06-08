@@ -6,11 +6,11 @@
 /*   By: vharkush <vharkush@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/04 14:42:33 by vharkush          #+#    #+#             */
-/*   Updated: 2023/06/08 21:05:17 by vharkush         ###   ########.fr       */
+/*   Updated: 2023/06/04 15:16:57 by vharkush         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../incl/so_long.h"
+#include "../incl/so_long_bonus.h"
 
 void	ft_free_all(t_data *data, t_map *map)
 {
@@ -21,6 +21,12 @@ void	ft_free_all(t_data *data, t_map *map)
 	mlx_destroy_image(data->mlx_ptr, data->img->monki);
 	mlx_destroy_image(data->mlx_ptr, data->img->col);
 	mlx_destroy_image(data->mlx_ptr, data->img->exit);
+	mlx_destroy_image(data->mlx_ptr, data->img->villain);
+	mlx_destroy_image(data->mlx_ptr, data->img->prize);
+	mlx_destroy_image(data->mlx_ptr, data->img->weaponl);
+	mlx_destroy_image(data->mlx_ptr, data->img->weaponr);
+	mlx_destroy_image(data->mlx_ptr, data->img->weaponu);
+	mlx_destroy_image(data->mlx_ptr, data->img->weapond);
 	mlx_destroy_display(data->mlx_ptr);
 	free(data->mlx_ptr);
 	free(data->img);

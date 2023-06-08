@@ -6,11 +6,11 @@
 /*   By: vharkush <vharkush@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/29 15:06:19 by vharkush          #+#    #+#             */
-/*   Updated: 2023/06/08 20:58:23 by vharkush         ###   ########.fr       */
+/*   Updated: 2023/06/04 15:22:23 by vharkush         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../incl/so_long.h"
+#include "../incl/so_long_bonus.h"
 
 void	ft_open_map(char **av, t_map *map, t_data *data)
 {
@@ -64,6 +64,8 @@ void	ft_put_img(t_data *data, t_map *map, int i, int j)
 				data->x = j;
 				data->y = i;
 			}
+			if (map->space[i][j] == 'V')
+				ft_put_with_mlx(data, data->img->villain, j, i);
 			j++;
 		}
 		i++;
@@ -88,4 +90,18 @@ void	ft_pregame(t_map *map, t_data *data, char **av, int ac)
 		ft_free_arr(map);
 		ft_error_msg_exit_free_fd(42, "Error\nMlx_new_window failed\n", 28);
 	}
+}
+
+void	ft_write_moves(int moves, t_data *data)
+{
+	char	*str;
+
+	str = ft_itoa(moves);
+	if (!str)
+		ft_free_all(data, data->map);
+	ft_put_with_mlx(data, data->img->backgrd, 0, 0);
+	ft_put_with_mlx(data, data->img->backgrd, 0, 64);
+	mlx_string_put(data->mlx_ptr, data->win_ptr, 10, 10, INT_MAX, "Moves: ");
+	mlx_string_put(data->mlx_ptr, data->win_ptr, 50, 10, INT_MAX, str);
+	free(str);
 }

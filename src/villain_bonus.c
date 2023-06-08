@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../incl/so_long.h"
+#include "../incl/so_long_bonus.h"
 
 void	ft_new_weapon_frame(int ind, t_data *data)
 {
