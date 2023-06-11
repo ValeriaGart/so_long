@@ -6,7 +6,7 @@
 /*   By: vharkush <vharkush@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/04 15:01:50 by vharkush          #+#    #+#             */
-/*   Updated: 2023/06/04 15:03:11 by vharkush         ###   ########.fr       */
+/*   Updated: 2023/06/11 14:19:53 by vharkush         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,4 +44,19 @@ void	if_lrud(int keysym, t_data *data)
 		data->y += 1;
 		ft_monke_moves(data, "textures/maind1.xpm", "textures/maind2.xpm");
 	}
+}
+
+void	ft_write_moves(int moves, t_data *data)
+{
+	char	*str;
+	int		len;
+
+	str = ft_itoa(moves);
+	if (!str)
+		ft_free_all(data, data->map);
+	len = ft_strlen(str);
+	write(1, "Moves: ", 7);
+	write(1, str, len);
+	write(1, "\n", 1);
+	free(str);
 }

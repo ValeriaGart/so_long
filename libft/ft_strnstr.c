@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   20ft_strnstr.c                                     :+:      :+:    :+:   */
+/*   ft_strnstr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vharkush <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: vharkush <vharkush@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/06 17:32:29 by vharkush          #+#    #+#             */
-/*   Updated: 2022/10/06 17:33:44 by vharkush         ###   ########.fr       */
+/*   Updated: 2023/06/09 11:52:06 by vharkush         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,11 +44,11 @@ char	*ft_strnstr(const char *big, const char *little, size_t len)
 	size_t	j;
 	char	*res;
 
+	if (!big || len == 0 || !little)
+		return (0);
 	if (little[0] == '\0')
 		return ((char *)big);
 	j = 0;
-	if (!big && len == 0)
-		return (0);
 	if (ft_strlen((char *)little) > len && big)
 		return (NULL);
 	while (little[j])

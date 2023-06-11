@@ -6,7 +6,7 @@
 /*   By: vharkush <vharkush@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 21:16:24 by vharkush          #+#    #+#             */
-/*   Updated: 2023/06/08 20:57:37 by vharkush         ###   ########.fr       */
+/*   Updated: 2023/06/11 14:10:53 by vharkush         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ int	main(int ac, char **av)
 	t_data	data;
 
 	data.i = 0;
+	data.moves = 0;
 	ft_pregame(&map, &data, av, ac);
 	data.space = map.space;
 	data.map = &map;

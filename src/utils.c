@@ -6,7 +6,7 @@
 /*   By: vharkush <vharkush@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/29 15:06:19 by vharkush          #+#    #+#             */
-/*   Updated: 2023/06/08 20:58:23 by vharkush         ###   ########.fr       */
+/*   Updated: 2023/06/11 14:49:13 by vharkush         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@ void	ft_open_map(char **av, t_map *map, t_data *data)
 		ft_error_msg_exit_free_fd(42, "Error\nMalloc failed\n", 20);
 	data->space = map->space;
 	data->col = 0;
-	data->moves = 0;
 	data->total_col = map->collect;
 	close(fd);
 }
@@ -40,6 +39,11 @@ void	ft_put_with_mlx(t_data *data, void *pic, int x, int y)
 {
 	x *= 64;
 	y *= 64;
+	if (!pic)
+	{
+		ft_free_all(data, data->map);
+		ft_error_msg_exit_free_fd(42, "Error\nTexture failed\n", 21);
+	}
 	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, pic, x, y);
 }
 

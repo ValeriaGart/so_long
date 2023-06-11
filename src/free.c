@@ -6,7 +6,7 @@
 /*   By: vharkush <vharkush@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/04 14:42:33 by vharkush          #+#    #+#             */
-/*   Updated: 2023/06/08 21:05:17 by vharkush         ###   ########.fr       */
+/*   Updated: 2023/06/11 14:50:53 by vharkush         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,16 @@ void	ft_free_all(t_data *data, t_map *map)
 {
 	mlx_destroy_window(data->mlx_ptr, data->win_ptr);
 	data->win_ptr = NULL;
-	mlx_destroy_image(data->mlx_ptr, data->img->backgrd);
-	mlx_destroy_image(data->mlx_ptr, data->img->right);
-	mlx_destroy_image(data->mlx_ptr, data->img->monki);
-	mlx_destroy_image(data->mlx_ptr, data->img->col);
-	mlx_destroy_image(data->mlx_ptr, data->img->exit);
+	if (data->img->backgrd)
+		mlx_destroy_image(data->mlx_ptr, data->img->backgrd);
+	if (data->img->right)
+		mlx_destroy_image(data->mlx_ptr, data->img->right);
+	if (data->img->monki)
+		mlx_destroy_image(data->mlx_ptr, data->img->monki);
+	if (data->img->col)
+		mlx_destroy_image(data->mlx_ptr, data->img->col);
+	if (data->img->exit)
+		mlx_destroy_image(data->mlx_ptr, data->img->exit);
 	mlx_destroy_display(data->mlx_ptr);
 	free(data->mlx_ptr);
 	free(data->img);

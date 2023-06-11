@@ -6,7 +6,7 @@
 /*   By: vharkush <vharkush@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 21:23:38 by vharkush          #+#    #+#             */
-/*   Updated: 2023/06/08 20:55:26 by vharkush         ###   ########.fr       */
+/*   Updated: 2023/06/11 14:13:12 by vharkush         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,6 @@ typedef struct s_map
 	int				exit_way;
 	int				player;
 	int				exit;
-	int				villain;
 	int				x;
 	int				y;
 }		t_map;
@@ -61,13 +60,13 @@ typedef struct s_data
 	char	**space;
 	void	*mlx_ptr;
 	void	*win_ptr;
+	int		moves;
 	int		x;
 	int		y;
 	int		ex;
 	int		ey;
 	int		col;
 	int		total_col;
-	int		moves;
 	int		i;
 	t_img	*img;
 	t_map	*map;

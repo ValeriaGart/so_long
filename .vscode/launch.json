@@ -9,7 +9,7 @@
 			"type": "cppdbg",
 			"request": "launch",
 			"program": "${workspaceFolder}/so_long",
-			"args": ["../maps/enemy_defeat.ber"],
+			"args": ["../maps/hehe_monke.ber"],
 			"stopAtEntry": true,
 			"cwd": "${fileDirname}",
 			"environment": [],

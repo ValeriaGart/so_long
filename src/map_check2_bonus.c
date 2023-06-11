@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   map_check2.c                                       :+:      :+:    :+:   */
+/*   map_check2_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vharkush <vharkush@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 21:18:31 by vharkush          #+#    #+#             */
-/*   Updated: 2023/06/04 14:55:49 by vharkush         ###   ########.fr       */
+/*   Updated: 2023/06/11 13:11:50 by vharkush         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,6 @@ void	ft_lines(int fd, t_map *map)
 		}
 		map->lines += 1;
 	}
-	free(tmp);
 }
 
 char	**ft_store_arr(t_map *map, int fd, int i)
@@ -60,7 +59,8 @@ char	**ft_store_arr(t_map *map, int fd, int i)
 		}
 		str[i][map->line_len] = '\0';
 	}
-	str[map->lines] = NULL;
+	if (str != NULL)
+		str[map->lines] = NULL;
 	return (str);
 }
 

@@ -6,7 +6,7 @@
 /*   By: vharkush <vharkush@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 19:59:50 by vharkush          #+#    #+#             */
-/*   Updated: 2023/06/08 21:14:56 by vharkush         ###   ########.fr       */
+/*   Updated: 2023/06/11 14:11:54 by vharkush         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,14 @@ void	ft_monke_moves(t_data *data, char *one, char *two)
 
 void	move_monke(int keysym, t_data *data)
 {
-	data->moves += 1;
+	if (keysym == XK_w || keysym == XK_d || keysym == XK_s || keysym == XK_a)
+		data->moves += 1;
+	if (keysym == LEFT_KEY || keysym == RIGHT_KEY || keysym == DOWN_KEY
+		|| keysym == UP_KEY)
+		data->moves += 1;
+	if (data->moves == 1000000)
+		data->moves = 0;
+	ft_write_moves(data->moves, data);
 	if_lrud(keysym, data);
 	if (data->space[data->y][data->x] == 'C')
 	{
