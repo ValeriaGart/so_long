@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   19ft_memcmp.c                                      :+:      :+:    :+:   */
+/*   ft_memcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vharkush <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: ynguyen <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/05 18:05:51 by vharkush          #+#    #+#             */
-/*   Updated: 2022/10/05 18:05:54 by vharkush         ###   ########.fr       */
+/*   Created: 2022/10/15 11:53:44 by ynguyen           #+#    #+#             */
+/*   Updated: 2022/10/24 16:01:20 by ynguyen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,17 +16,19 @@ int	ft_memcmp(const void *s1, const void *s2, size_t n)
 {
 	unsigned char	*str1;
 	unsigned char	*str2;
-	size_t			j;
+	size_t			i;
 
-	j = 0;
+	i = 0;
 	str1 = (unsigned char *)s1;
 	str2 = (unsigned char *)s2;
-	while (j < n)
+	while (i != n)
 	{
-		if (str1[j] == str2[j])
-			j++;
+		if (str1[i] == str2[i])
+			i++;
+		else if (str1[i] > str2[i])
+			return (1);
 		else
-			return (str1[j] - str2[j]);
+			return (-1);
 	}
 	return (0);
 }

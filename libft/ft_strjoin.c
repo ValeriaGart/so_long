@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vharkush <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: ynguyen <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/09 14:52:42 by vharkush          #+#    #+#             */
-/*   Updated: 2022/10/09 14:53:02 by vharkush         ###   ########.fr       */
+/*   Created: 2022/10/23 13:36:54 by ynguyen           #+#    #+#             */
+/*   Updated: 2022/10/23 17:59:56 by ynguyen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,21 +14,25 @@
 
 char	*ft_strjoin(char const *s1, char const *s2)
 {
-	char	*str;
-	int		ls1;
-	int		ls2;
+	char	*new;
 	int		i;
+	int		j;
 
-	if (!s1 || !s2)
-		return (0);
-	ls1 = ft_strlen((char *)s1);
-	ls2 = ft_strlen((char *)s2);
-	i = ls1 + ls2;
-	str = malloc(sizeof(char) * (i + 1));
-	if (!str)
+	new = (char *)malloc(sizeof(char) * (ft_strlen(s1) + ft_strlen(s2) + 1));
+	if (!new)
 		return (NULL);
-	ft_memcpy(str, s1, ls1);
-	ft_memcpy(str + ls1, s2, ls2);
-	str[i] = '\0';
-	return (str);
+	i = 0;
+	while (s1[i] != '\0')
+	{
+		new[i] = s1[i];
+		i++;
+	}
+	j = 0;
+	while (s2[j] != '\0')
+	{
+		new[i + j] = s2[j];
+		j++;
+	}
+	new[i + j] = '\0';
+	return (new);
 }

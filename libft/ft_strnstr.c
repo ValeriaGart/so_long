@@ -3,60 +3,31 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strnstr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vharkush <vharkush@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ynguyen <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/06 17:32:29 by vharkush          #+#    #+#             */
-/*   Updated: 2023/06/09 11:52:06 by vharkush         ###   ########.fr       */
+/*   Created: 2022/10/11 17:12:41 by ynguyen           #+#    #+#             */
+/*   Updated: 2022/10/21 15:11:56 by ynguyen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_while(char *big, size_t len, size_t j, char *little)
-{
-	int	i;
-	int	count;
-
-	while (*big != '\0' && len)
-	{
-		if (*big == little[0] && len >= j)
-		{
-			i = 0;
-			count = 0;
-			while (little[i] != '\0')
-			{
-				if (big[i] == little[i])
-					count++;
-				i++;
-			}
-			if (count == i)
-				return ((char *)big);
-		}
-		big++;
-		len--;
-	}
-	big = NULL;
-	return (big);
-}
-
 char	*ft_strnstr(const char *big, const char *little, size_t len)
 {
+	size_t	i;
 	size_t	j;
-	char	*res;
 
-	if (!big || len == 0 || !little)
-		return (0);
-	if (little[0] == '\0')
+	if (big == little || (!little[0]))
 		return ((char *)big);
-	j = 0;
-	if (ft_strlen((char *)little) > len && big)
-		return (NULL);
-	while (little[j])
-		j++;
-	if (ft_strncmp(big, little, j) == 0)
-		return ((char *)big);
-	res = ft_while((char *)big, len, j, (char *)little);
-	if (res != NULL)
-		return (res);
-	return (NULL);
+	i = 0;
+	while (big[i] && i < len)
+	{
+		j = 0;
+		while (big[i + j] != '\0' && big[i + j] == little[j] && i + j < len)
+			j++;
+		if (little[j] == '\0')
+			return ((char *)&big[i]);
+		i++;
+	}
+	return (0);
 }

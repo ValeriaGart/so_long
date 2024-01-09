@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memmove.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vharkush <vharkush@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ynguyen <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/03 19:35:49 by vharkush          #+#    #+#             */
-/*   Updated: 2023/06/09 11:49:35 by vharkush         ###   ########.fr       */
+/*   Created: 2022/10/17 15:39:45 by ynguyen           #+#    #+#             */
+/*   Updated: 2022/10/24 15:56:01 by ynguyen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,27 +14,27 @@
 
 void	*ft_memmove(void *dest, const void *src, size_t n)
 {
-	unsigned char	*csrc;
-	unsigned char	*cdest;
-	size_t			i;
+	unsigned char		*s1;
+	unsigned const char	*s2;
+	size_t				i;
 
+	s1 = (unsigned char *)dest;
+	s2 = (unsigned const char *)src;
+	if (!s1 && !s2)
+		return (NULL);
 	i = 0;
-	cdest = (unsigned char *)dest;
-	csrc = (unsigned char *)src;
-	if (csrc == 0 || cdest == 0)
-		return (0);
-	if (csrc > cdest)
+	if (s2 < s1)
 	{
-		while (i < n)
-		{
-			cdest[i] = csrc[i];
-			i++;
-		}
+		while (i++ < n)
+			s1[n - i] = s2[n - i];
 	}
 	else
 	{
-		while (++i <= n)
-			cdest[n - i] = csrc[n - i];
+		while (n-- > 0)
+		{
+			s1[i] = s2[i];
+			i++;
+		}
 	}
 	return (dest);
 }

@@ -3,35 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vharkush <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: yenng <yenng@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/04 16:58:33 by vharkush          #+#    #+#             */
-/*   Updated: 2022/11/05 16:30:40 by vharkush         ###   ########.fr       */
+/*   Updated: 2023/08/02 11:53:46 by yenng            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
-
-char	*ft_strdup(char *src)
-{
-	int		i;
-	char	*ret_str;
-
-	i = 1;
-	while (src[i - 1])
-		i++;
-	ret_str = malloc(sizeof(*src) * i);
-	if (ret_str == NULL)
-		return (NULL);
-	i = 0;
-	while (src[i])
-	{
-		ret_str[i] = src[i];
-		i++;
-	}
-	ret_str[i] = '\0';
-	return (ret_str);
-}
 
 char	*ft_if_newline(int i, char ***line)
 {

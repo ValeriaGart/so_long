@@ -3,61 +3,35 @@
 /*                                                        :::      ::::::::   */
 /*   ft_substr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vharkush <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: ynguyen <ynguyen@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/13 18:49:40 by vharkush          #+#    #+#             */
-/*   Updated: 2022/10/13 18:49:44 by vharkush         ###   ########.fr       */
+/*   Created: 2022/10/21 15:47:07 by ynguyen           #+#    #+#             */
+/*   Updated: 2023/11/28 17:40:26 by ynguyen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-size_t	check_mem(size_t len, unsigned int start, char *s)
-{
-	size_t	mem;
-	size_t	i;
-	size_t	j;
-
-	mem = 0;
-	i = 0;
-	j = 0;
-	while (s[i])
-	{
-		if (i >= start && j < len)
-		{
-			mem++;
-			j++;
-		}
-		i++;
-	}
-	return (mem);
-}
-
 char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
-	char	*str;
-	size_t	i;
-	size_t	j;
+	int		i;
+	char	*substr;
 
+	if (start >= ft_strlen(s))
+		len = 0;
+	if (len > (ft_strlen(s) - start))
+		len = (ft_strlen(s) - start);
+	substr = malloc(len + 1);
 	i = 0;
-	if (!s)
-		return (0);
-	if (len > ft_strlen((char *)s))
-		len = ft_strlen((char *)s);
-	j = check_mem(len, start, (char *)s);
-	str = malloc(sizeof(char) * (j + 1));
-	if (!str)
+	if (!substr)
 		return (NULL);
-	j = 0;
-	while (s[i])
+	while (len > 0)
 	{
-		if (i >= start && j < len)
-		{
-			str[j] = s[i];
-			j++;
-		}
+		substr[i] = s[start];
+		len--;
 		i++;
+		start++;
 	}
-	str[j] = '\0';
-	return (str);
+	substr[i] = '\0';
+	return (substr);
 }

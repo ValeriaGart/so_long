@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vharkush <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: yenng <yenng@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/04 17:00:05 by vharkush          #+#    #+#             */
-/*   Updated: 2022/11/04 17:01:29 by vharkush         ###   ########.fr       */
+/*   Updated: 2023/08/02 11:54:24 by yenng            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,26 +79,4 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	ft_memcpy(str + ls1, s2, ls2);
 	str[i] = '\0';
 	return (str);
-}
-
-size_t	ft_strlcpy(char *dest, char *src, size_t size)
-{
-	size_t	a;
-	size_t	b;
-	size_t	c;
-
-	c = 0;
-	b = size - 1;
-	a = 0;
-	while (src[a])
-		a++;
-	if (size < 1)
-		return (a);
-	while (c < b && src[c] != '\0')
-	{
-		dest[c] = src[c];
-		c++;
-	}
-	dest[c] = '\0';
-	return (a);
 }

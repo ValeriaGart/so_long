@@ -3,18 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   ft_putchar_fd.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vharkush <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: ynguyen <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/16 16:46:39 by vharkush          #+#    #+#             */
-/*   Updated: 2022/10/16 16:46:41 by vharkush         ###   ########.fr       */
+/*   Created: 2022/10/26 12:28:00 by ynguyen           #+#    #+#             */
+/*   Updated: 2022/10/26 16:22:34 by ynguyen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+#include <unistd.h>
 
 void	ft_putchar_fd(char c, int fd)
 {
-	if (fd == 0)
-		return ;
 	write(fd, &c, 1);
 }

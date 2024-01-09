@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   18ft_memchr.c                                      :+:      :+:    :+:   */
+/*   ft_memchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vharkush <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: ynguyen <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/05 17:13:20 by vharkush          #+#    #+#             */
-/*   Updated: 2022/10/05 17:13:23 by vharkush         ###   ########.fr       */
+/*   Created: 2022/10/14 15:33:44 by ynguyen           #+#    #+#             */
+/*   Updated: 2022/10/24 15:56:43 by ynguyen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,18 +14,16 @@
 
 void	*ft_memchr(const void *s, int c, size_t n)
 {
-	size_t			i;
-	unsigned char	*res;
-	unsigned char	ch;
+	char	*str;
+	size_t	i;
 
 	i = 0;
-	res = (unsigned char *)s;
-	ch = (unsigned char)c;
+	str = (char *)s;
 	while (i < n)
 	{
-		if (res[i] == ch)
-			return (res + i);
+		if (str[i] == (char)c)
+			return ((void *)&str[i]);
 		i++;
 	}
-	return (0);
+	return (NULL);
 }

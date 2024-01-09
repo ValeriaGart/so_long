@@ -3,85 +3,73 @@
 /*                                                        :::      ::::::::   */
 /*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vharkush <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: ynguyen <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/11 17:28:25 by vharkush          #+#    #+#             */
-/*   Updated: 2022/10/11 17:28:28 by vharkush         ###   ########.fr       */
+/*   Created: 2022/10/24 18:02:37 by ynguyen           #+#    #+#             */
+/*   Updated: 2022/10/26 10:33:22 by ynguyen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_check_len(long n)
+static char	*ft_null(long int num)
 {
-	int	i;
+	char	*str;
 
-	i = 0;
-	if (n < 0)
+	if (num == 0)
 	{
-		n = n * -1;
-		i++;
+		str = ft_calloc(1, 2);
+		if (!str)
+			return (NULL);
+		str[0] = '0';
+		return (str);
 	}
-	while (n >= 10)
-	{
-		n /= 10;
-		i++;
-	}
-	return (i + 1);
+	return (NULL);
 }
 
-void	ft_putnum(size_t n, int *i, char *c)
+static unsigned int	ft_digitcount(long int num)
 {
-	if (n <= 9)
-	{
-		c[(*i)++] = n + '0';
-	}
-	else
-	{
-		ft_putnum(n / 10, i, c);
-		ft_putnum(n % 10, i, c);
-	}
-}
+	unsigned int	count;
 
-char	*ft_min(int num)
-{
-	char	*c;
-	int		i;
-
-	i = num + 2147483650;
-	c = malloc(sizeof(char) * 12);
-	if (!c)
-		return (0);
-	c[0] = '-';
-	c[1] = '2';
-	ft_putnum(147483648, &i, c);
-	c[i] = '\0';
-	return (c);
+	count = 0;
+	if (num < 0)
+	{
+		count++;
+		num *= -1;
+	}
+	while (num != 0)
+	{
+		num /= 10;
+		count++;
+	}
+	return (count);
 }
 
 char	*ft_itoa(int n)
 {
-	char	*c;
-	int		i;
-	long	num;
+	char			*str;
+	long int		num;
+	long int		single;
+	unsigned int	i;
 
 	num = n;
-	if (num == -2147483648)
-	{
-		c = ft_min(num);
-		return (c);
-	}
-	i = ft_check_len(num);
-	c = malloc(sizeof(char) * (i + 1));
-	if (c == NULL)
+	i = ft_digitcount(num);
+	if (num == 0)
+		return (ft_null(num));
+	str = (char *)malloc(sizeof(char) * (i + 1));
+	if (!str)
 		return (NULL);
-	i = 0;
-	while (num < 0)
+	str[i--] = '\0';
+	if (num < 0)
 	{
-		c[i++] = '-';
 		num *= -1;
+		str[0] = '-';
 	}
-	ft_putnum(num, &i, c);
-	c[i] = '\0';
-	return (c);
+	while (num > 0)
+	{
+		single = num;
+		str[i--] = single % 10 + 48;
+		num /= 10;
+	}
+	return (str);
 }

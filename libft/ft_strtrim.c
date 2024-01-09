@@ -3,72 +3,64 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strtrim.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vharkush <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: ynguyen <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/09 15:24:06 by vharkush          #+#    #+#             */
-/*   Updated: 2022/10/09 15:24:10 by vharkush         ###   ########.fr       */
+/*   Created: 2022/10/23 18:02:27 by ynguyen           #+#    #+#             */
+/*   Updated: 2022/10/24 15:59:52 by ynguyen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	checkpls(char *set, char a)
+static unsigned int	ft_start(char const *str, char const *set)
 {
-	int	i;
+	unsigned int	i;
+	unsigned int	j;
 
 	i = 0;
-	while (set[i])
+	while (str[i] != '\0')
 	{
-		if (set[i] == a)
-			return (1);
+		j = 0;
+		while (set[j] != str[i])
+		{
+			if (set[j] == '\0')
+				return (i);
+			j++;
+		}
 		i++;
 	}
-	return (0);
+	return (i);
 }
 
-char	*trimpls(char *s1, char *set, int *j, int i)
+static unsigned int	ft_end(char const *str, char const *set)
 {
-	int		n;
-	int		i1;
-	int		len;
-	char	*str;
+	unsigned int	a;
+	unsigned int	b;
 
-	i1 = 0;
-	len = ft_strlen(s1);
-	while (checkpls(set, s1[len - i1 - 1]) > 0)
-		i1++;
-	n = len - (i1 + i);
-	str = (char *)malloc(sizeof(*s1) * (n + 1));
-	if (!str)
-		return (NULL);
-	while (*j < n)
+	a = ft_strlen(str);
+	while (a > 0)
 	{
-		str[*j] = s1[i + *j];
-		*j += 1;
+		b = 0;
+		while (str[a] != set[b])
+		{
+			if (set[b] == '\0' && set[b] != str[a])
+				return (a);
+			b++;
+		}
+		a--;
 	}
-	return (str);
+	return (a);
 }
 
 char	*ft_strtrim(char const *s1, char const *set)
 {
-	char	*str;
-	int		i;
-	int		j;
-	int		len;
+	unsigned int	start;
+	unsigned int	end;
+	char			*str;
 
-	i = 0;
-	if (!s1)
-		return (NULL);
-	len = ft_strlen((char *)s1);
-	j = len;
-	while (checkpls((char *)set, s1[i]) > 0)
-		i++;
-	j = 0;
-	if (i == len)
-		str = malloc(1);
-	else
-		str = trimpls((char *)s1, (char *)set, &j, i);
-	if (str)
-		str[j] = '\0';
+	start = ft_start(s1, set);
+	end = ft_end(s1, set);
+	end = end + 1 - start;
+	str = ft_substr(s1, start, end);
 	return (str);
 }

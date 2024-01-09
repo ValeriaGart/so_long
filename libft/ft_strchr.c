@@ -3,31 +3,35 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vharkush <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: ynguyen <ynguyen@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/05 11:23:29 by vharkush          #+#    #+#             */
-/*   Updated: 2022/10/05 11:26:39 by vharkush         ###   ########.fr       */
+/*   Created: 2022/10/07 16:00:05 by ynguyen           #+#    #+#             */
+/*   Updated: 2023/06/16 18:14:18 by ynguyen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+#include <stdio.h>
 
 char	*ft_strchr(const char *s, int c)
 {
-	int		i;
-	char	*res;
-
-	i = 0;
-	if (!s)
-		return (NULL);
-	res = (char *)s;
-	while (res[i])
+	if (c >= 128)
+		c %= 128;
+	while (s && *s != '\0')
 	{
-		if (res[i] == (unsigned char)c)
-			return (res + i);
-		i++;
+		if (*s == c)
+			return ((char *)s);
+		s++;
 	}
-	if ((unsigned char)c == '\0')
-		return (res + i);
-	return (NULL);
+	if (s && *s == c)
+		return ((char *)s);
+	return (0);
 }
+// int	main(void)
+// {
+// 	char c[] = "this is my imma";
+
+// 	char *s = ft_strchr(c, 'm');
+// 	printf("%s\n", s);
+// 	return (0);
+// }

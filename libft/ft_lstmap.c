@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lstmap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vharkush <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: ynguyen <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/15 15:35:29 by vharkush          #+#    #+#             */
-/*   Updated: 2022/10/15 15:35:31 by vharkush         ###   ########.fr       */
+/*   Created: 2022/11/02 15:56:14 by ynguyen           #+#    #+#             */
+/*   Updated: 2022/11/03 13:01:23 by ynguyen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,24 +14,22 @@
 
 t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 {
-	t_list	*newlist;
-	t_list	*iter;
+	t_list	*new;
+	t_list	*temp;
 
-	if (!lst || !f || !del)
+	temp = 0;
+	if (!f || !del)
 		return (NULL);
-	newlist = ft_lstnew((f)(lst->content));
-	iter = newlist;
-	while (lst->next)
+	while (lst)
 	{
-		lst = lst->next;
-		iter->next = ft_lstnew((f)(lst->content));
-		if (iter->next == NULL)
+		new = ft_lstnew(f(lst->content));
+		if (!new)
 		{
-			ft_lstclear(&newlist, del);
+			ft_lstclear(&new, del);
 			return (NULL);
 		}
-		iter = iter->next;
+		ft_lstadd_back(&temp, new);
+		lst = lst->next;
 	}
-	iter = iter->next;
-	return (newlist);
+	return (temp);
 }
