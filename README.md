@@ -23,7 +23,7 @@ All the graphical content is also created by me, look how pretty it is:
 
 First of all I used the graphical library provided by 42 codding school.
 
-The maps for games you cn find in the maps folder. There are some of created by me, but you may ofc add yours! The symbols for those are:
+The maps for games you can find in the maps folder. There are some of created by me, but you may ofc add yours! The symbols for those are:
 
 ```
 0 for an empty space,
