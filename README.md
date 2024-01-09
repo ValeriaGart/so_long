@@ -13,7 +13,6 @@ chosing the shortest possible route.
 • At every move, the current number of movements must be displayed in the shell.
 • You have to use a 2D view (top-down or profile).
 • The game doesn’t have to be real time.
-• Although the given examples show a dolphin theme, you can create the world you want.
 ```
 
 All the graphical content is also created by me, look how pretty it is:
