@@ -44,6 +44,24 @@ The pictures are stored in textures folder in .ber format.
 
 Nothing more to add about how it's done, the rest are basic algorythms in C. Go check my code if you like or just run and play my game ^^
 
+## How to play
+
+Use "wasd" or the arrows to move around. 
+
+Collect all bananas to open the gate, then you may exit (win).
+
+In bonus version there are enemies. You will guaranteed die if you meet those.. Unless! You defeat those using 'q' button.
+
+```
+The concept of enemies is the bees. 
+
+If you interact with those, you get bitten and die.
+
+Pressing the 'q' button you pay the bees for the honey and get it as a new collectable.
+
+Presing 'q' next to the honey, you pay delivery worker to bring it to your house in the monkey paradise. So honey disappears from the field 😌
+```
+
 ## How to run 
 
 📍runs only on linux because of the school library📍

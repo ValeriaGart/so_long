@@ -1,8 +1,0 @@
-✅remember all writen
-✅add char animation
-✅add enemy
-✅add count on screen
-✅check leaks
-✅check with/without newline open
-✅norminette
-❎push
