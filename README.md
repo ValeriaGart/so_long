@@ -53,7 +53,7 @@ Collect all bananas to open the gate, then you may exit (win).
 In bonus version there are enemies. You will guaranteed die if you meet those.. Unless! You defeat those using 'q' button.
 
 ```
-The concept of enemies is the bees. 
+The enemies are the bees. 
 
 If you interact with those, you get bitten and die.
 
